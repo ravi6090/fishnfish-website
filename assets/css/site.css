@@ -546,7 +546,7 @@ a.chip:hover{border-color:var(--lime); color:var(--ink)}
   overflow:hidden;
 }
 .pack-family img{
-  width:clamp(84px,16.5%,196px); height:auto; flex:none;
+  width:clamp(92px,25%,268px); height:auto; flex:none;
   filter:drop-shadow(0 26px 30px rgba(0,0,0,.34));
   transition:transform .28s cubic-bezier(.2,.8,.3,1);
 }
@@ -579,5 +579,5 @@ a.chip:hover{border-color:var(--lime); color:var(--ink)}
 @media (max-width:640px){
   .pack-family{padding:24px 10px 20px}
   .pack-family img + img{margin-left:-16px}
-  .pack-family img{width:22%}
+  .pack-family img{width:30%}
 }
