@@ -581,3 +581,13 @@ a.chip:hover{border-color:var(--lime); color:var(--ink)}
   .pack-family img + img{margin-left:-16px}
   .pack-family img{width:30%}
 }
+
+/* honeypot: off-screen for bots, invisible and unfocusable for people */
+.hp{position:absolute; left:-9999px; width:1px; height:1px; opacity:0; pointer-events:none}
+/* the form failed to send - this must read as a problem, not a confirmation */
+.form-status--error{
+  border-left-color:#B4472C; background:color-mix(in srgb, #B4472C 10%, transparent);
+}
+.form-status--error a{color:inherit; text-decoration:underline}
+:root[data-theme="dark"] .form-status--error,
+.form-status--error{border-left-width:3px}

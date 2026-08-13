@@ -179,9 +179,20 @@
         <p class="eyebrow">Or write to us</p>
         <h2>Trade enquiry.</h2>
       </div>
-      <form class="form rv" id="enquiry" novalidate>
-        <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" autocomplete="name"></div>
+      <form class="form rv" id="enquiry"
+            action="https://formsubmit.co/info@fishnfish.com" method="POST">
+        <!-- FormSubmit settings: no captcha page, readable email, come back here -->
+        <input type="hidden" name="_subject" value="Trade enquiry from fishnfish.com">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://fishnfish.com/thank-you.html">
+        <!-- honeypot: bots fill this, people never see it -->
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+
+        <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
         <div class="field"><label for="f-co">Company</label><input id="f-co" name="company" type="text" autocomplete="organization"></div>
+        <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel"></div>
         <div class="field"><label for="f-state">State</label>
           <select id="f-state" name="state">
             <option value="">Select a state</option>
@@ -201,8 +212,8 @@
         </div>
         <div class="field field--wide"><label for="f-msg">What do you need?</label><textarea id="f-msg" name="message" placeholder="Cuts, indicative monthly volume, and the towns you cover."></textarea></div>
         <div class="field--wide"><button class="btn btn--solid" type="submit">Send enquiry &rarr;</button></div>
-        <p class="form-note">This is a design prototype &mdash; the form is not connected to anything yet.</p>
-        <p class="form-status" id="formStatus" role="status" hidden></p>
+        <p class="form-note">We reply to trade enquiries within one working day.</p>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite" hidden></p>
       </form>
     </div>
   </section>

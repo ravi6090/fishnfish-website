@@ -9,19 +9,20 @@ server-side code. Upload the contents of this folder to any web host and it work
 index.html            Home
 about.html            About & quality (company story + the five quality pillars)
 products.html         The range, comparison table
-products/*.html       One page per cut (5)
+products/*.html       One page per cut (3)
 recipes.html          All eight recipes
 recipes/*.html        One page per recipe (8)
 trade.html            For trade + contact, regional numbers, enquiry form
 404.html              Not-found page
+thank-you.html        Where the form lands when JavaScript is off
 robots.txt            Allows crawling, points at the sitemap
-sitemap.xml           All 18 pages
+sitemap.xml           All 16 indexed pages
 assets/css/site.css   The whole stylesheet
-assets/js/site.js     Scroll reveal, mobile menu, enquiry form
-assets/img/           17 images
+assets/js/site.js     Scroll reveal, mobile menu, enquiry form submission
+assets/img/           16 images
 ```
 
-Total: about 2.7 MB, almost all of it photography.
+Total: about 2.4 MB, almost all of it photography.
 
 ## Deploying
 
@@ -33,14 +34,21 @@ Upload everything to your web root. Nothing else to configure.
 
 ## Before it goes live
 
-1. **The enquiry form does not send anything.** `trade.html` has a working form
-   that currently just prints a confirmation. Wire it to whatever you use —
-   Formspree, your own mail script, or a CRM endpoint — by giving the
-   `<form id="enquiry">` an `action` and removing the `submit` handler at the
-   bottom of `assets/js/site.js`. Until then it silently loses enquiries.
+1. **Activate the enquiry form.** It posts to FormSubmit, which needs no account
+   but must be activated once: submit the form on the live site, then click the
+   confirmation link FormSubmit emails to `info@fishnfish.com`. Until you do,
+   submissions are rejected — the visitor sees an error with your phone number
+   and email, so nothing is lost silently, but do it before you announce the site.
 
-2. **Curry Cut Frozen has no pack artwork.** It reuses the chilled Curry Cut bag
-   (`assets/img/pack-curry-cut.png`). Drop the real artwork in as
+   After activation FormSubmit gives you a hashed endpoint. Swapping the `action`
+   on `<form id="enquiry">` in `trade.html` to that hash keeps your address out of
+   the page source. To move to a different provider entirely — Formspree, your own
+   script, a CRM — change that one `action` attribute. The JavaScript reads it from
+   the form, so nothing else needs touching.
+
+2. **Curry Cut Frozen uses the old Curry Cut bag artwork**
+   (`assets/img/pack-curry-cut.png`), which reads "CURRY CUT" rather than naming
+   the frozen line. Drop the real artwork in under the same filename, or add it as
    `pack-curry-cut-frozen.png` and update the `<img src>` in `products.html`,
    `products/curry-cut-frozen.html` and `index.html`.
 

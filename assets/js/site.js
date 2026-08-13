@@ -55,15 +55,43 @@ document.addEventListener('click', function(e){
   }, 400);
 });
 
-/* prototype enquiry form */
+/* enquiry form: posts to whatever the form's own action says, so swapping
+   provider is a one-line change in the HTML. Submits over fetch so the visitor
+   stays on the page; if that fails they get a real fallback rather than silence.
+   Without JS the form still posts natively and lands on thank-you.html. */
 var enquiryForm = document.getElementById('enquiry');
 if (enquiryForm) enquiryForm.addEventListener('submit', function(e){
+  if (!enquiryForm.checkValidity()) return;   // let the browser show its own messages
   e.preventDefault();
-  var s = document.getElementById('formStatus');
-  var name = document.getElementById('f-name').value.trim();
-  s.textContent = (name ? 'Thanks ' + name + ' -- in' : 'In') +
-    ' the built site this would reach the regional manager for your state. Nothing was sent from this prototype.';
-  s.hidden = false;
+  var status = document.getElementById('formStatus');
+  var btn    = enquiryForm.querySelector('button[type="submit"]');
+  var label  = btn.innerHTML;
+  var endpoint = enquiryForm.getAttribute('action').replace('formsubmit.co/', 'formsubmit.co/ajax/');
+
+  btn.disabled = true;
+  btn.innerHTML = 'Sending\u2026';
+  status.hidden = false;
+  status.className = 'form-status';
+  status.textContent = 'Sending your enquiry\u2026';
+
+  fetch(endpoint, {
+    method: 'POST',
+    headers: {'Accept': 'application/json'},
+    body: new FormData(enquiryForm)
+  })
+  .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(function(){
+    enquiryForm.reset();
+    status.textContent = 'Thank you \u2014 your enquiry is with us. '
+      + 'The regional manager for your state will come back to you within one working day.';
+  })
+  .catch(function(){
+    status.className = 'form-status form-status--error';
+    status.innerHTML = 'That did not send. Please email '
+      + '<a href="mailto:info@fishnfish.com">info@fishnfish.com</a> or call '
+      + '<a href="tel:+917799456456">+91 77 99 456 456</a> and we will pick it up from there.';
+  })
+  .then(function(){ btn.disabled = false; btn.innerHTML = label; });
 });
 
 lightInView();
