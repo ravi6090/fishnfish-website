@@ -14,8 +14,8 @@
   --band-bg:#121A15; --band-head:#FFFFFF; --band-fg:#EAF6EF;
   --band-fg-2:rgba(234,246,239,.92); --band-fg-3:rgba(234,246,239,.82);
   --band-line:rgba(255,255,255,.22);
-  /* photography ground: near-black so the pack colours carry, not the backdrop */
-  --shot-bg:#141A18; --shot-glow:rgba(255,255,255,.11);
+  /* photography ground: pale sage tint (from the lime accent family), a soft tray instead of a black hole */
+  --shot-bg:#E7EEDC; --shot-glow:rgba(255,255,255,.55);
   --art-invert:none;
   --shadow:0 1px 2px rgba(15,26,20,.05), 0 12px 32px -12px rgba(15,26,20,.14);
   --shadow-lg:0 2px 4px rgba(15,26,20,.06), 0 34px 70px -28px rgba(15,26,20,.30);
