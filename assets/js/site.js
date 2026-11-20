@@ -88,7 +88,7 @@ if (enquiryForm) enquiryForm.addEventListener('submit', function(e){
   .catch(function(){
     status.className = 'form-status form-status--error';
     status.innerHTML = 'That did not send. Please email '
-      + '<a href="mailto:info@fishnfish.com">info@fishnfish.com</a> or call '
+      + '<a href="mailto:map@mulpuri.org">map@mulpuri.org</a> or call '
       + '<a href="tel:+917799456456">+91 77 99 456 456</a> and we will pick it up from there.';
   })
   .then(function(){ btn.disabled = false; btn.innerHTML = label; });
